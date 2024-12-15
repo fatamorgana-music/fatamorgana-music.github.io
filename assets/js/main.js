@@ -136,13 +136,16 @@
     window.addEventListener('load', navmenuScrollspy);
     document.addEventListener('scroll', navmenuScrollspy);
 
-
     const getButton = document.getElementById('get-promo');
     try {
         const linkId = new URLSearchParams(window.location.search).get('link');
         if (!linkId || linkId.length === 0) {
-
             getButton.remove();
+        }
+        else {
+            const promos = document.querySelectorAll('.team-member').forEach(promo => {
+                promo.attributes['href'].value = promo.attributes['href'].value + '?link=' + linkId;
+            });
         }
     }
     catch {
